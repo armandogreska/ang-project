@@ -15,6 +15,6 @@ bootstrapApplication(AppComponent, appConfig).catch(err => {
 
 
 
-  console.error('hhh')
+  console.error('iii')
   return console.error(err)
 })
