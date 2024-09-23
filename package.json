@@ -10,7 +10,7 @@
     "ng": "ng",
     "npm-check-updates": "npx npm-check-updates -u && npm install",
     "outdated": "npm outdated",
-    "prepare": "husky || true",
+    "prepare": "husky",
     "serve:ssr:ang-project": "node dist/ang-project/server/server.mjs",
     "start": "ng serve",
     "test": "ng test",
@@ -23,7 +23,7 @@
   },
   "lint-staged": {
     "*.*": "prettier --write",
-    "*.ts": [
+    "**/*.{ts,tsx,html,css,scss,json}": [
       "prettier --write",
       "eslint"
     ]
