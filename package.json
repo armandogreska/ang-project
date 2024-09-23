@@ -10,7 +10,7 @@
     "ng": "ng",
     "npm-check-updates": "npx npm-check-updates -u && npm install",
     "outdated": "npm outdated",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "serve:ssr:ang-project": "node dist/ang-project/server/server.mjs",
     "start": "ng serve",
     "test": "ng test",
@@ -18,12 +18,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged, npx sort-package-json"
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,json,html,scss,css}": [
-      "npm run format"
+    "*.*": "prettier --write",
+    "*.ts": [
+      "prettier --write",
+      "eslint"
     ]
   },
   "dependencies": {
