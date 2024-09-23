@@ -3,6 +3,6 @@ import { appConfig } from './app/app.config'
 import { AppComponent } from './app/app.component'
 
 bootstrapApplication(AppComponent, appConfig).catch(err => {
-  console.error('ddd')
+  console.error('eee')
   return console.error(err)
 })
