@@ -12,7 +12,7 @@
     "outdated": "npm outdated",
     "prepare": "husky",
     "serve:ssr:ang-project": "node dist/ang-project/server/server.mjs",
-    "start": "ng serve --open",
+    "start": "ng serve",
     "test": "ng test",
     "watch": "ng build --watch --configuration development"
   },
