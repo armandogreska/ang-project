@@ -1,0 +1,74 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <div class="card mb-3">
+    <div class="row g-0 d-flex align-items-center">
+      <div class="col-lg-4">
+        <div class="card-body py-5 px-md-5">
+          <form
+            class="row g-3 needs-validation"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input
+                type="text"
+                id="user"
+                class="form-control"
+                formControlName="user"
+              />
+              <label class="form-label" for="user">User</label>
+              <p id="validationUser" class="invalid-feedback">
+                así muy mal majete
+              </p>
+            </div>
+
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+              />
+              <label class="form-label" for="password">Password</label>
+              <p id="validationPassword" class="invalid-feedback">
+                así muy mal majete
+              </p>
+            </div>
+
+            <!--
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="remember"
+                    checked
+                  />
+                  <label class="form-check-label" for="remember">
+                    Remember me
+                  </label>
+                </div>
+              </div>
+              -->
+
+            <!--
+              <div class="col">
+                <a href="#!">Forgot password?</a>
+              </div>
+            </div>
+            -->
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Sign in
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->

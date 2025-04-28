@@ -1,12 +1,13 @@
 import { Component } from '@angular/core'
 import { RouterModule, RouterOutlet } from '@angular/router'
-import { AppService } from './app.service'
+import { ApiService } from './api/api.service'
+import { LoginComponent } from './login/login.component'
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [AppService],
+  providers: [ApiService],
 })
 export class AppComponent {}

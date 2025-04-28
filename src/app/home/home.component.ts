@@ -1,22 +1,22 @@
 import { JsonPipe } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
-import { HomeService } from './home.service'
+import { ApiService } from '../api/api.service'
 
 @Component({
   selector: 'app-home',
   imports: [JsonPipe],
-  providers: [HomeService],
+  providers: [ApiService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   public posts: object = {}
-  constructor(private homeService: HomeService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.homeService.getPosts().subscribe(posts => {
+    this.apiService.getPosts().subscribe(posts => {
       this.posts = posts
-      console.log('>>>>>>>>>> cmp: ', this.posts)
+      // console.log('>>>>>>>>>> cmp: ', this.posts)
     })
   }
 }
