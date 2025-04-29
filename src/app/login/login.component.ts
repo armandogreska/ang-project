@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common'
 import { Component } from '@angular/core'
 import {
   FormBuilder,
@@ -9,7 +10,7 @@ import {
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -21,7 +22,7 @@ export class LoginComponent {
     // private authService: AuthenticationService,
   ) {
     this.loginForm = new FormGroup({
-      user: new FormControl('', [Validators.required]),
+      user: new FormControl('', [Validators.required, Validators.minLength(2)]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
