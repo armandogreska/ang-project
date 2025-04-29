@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build",
-    "format": "prettier --write \"src/**/*.*\" && npx sort-package-json",
+    "format": "prettier --write \"src/**/*.{ts,tsx,html,css,scss,json}\" && npx sort-package-json",
     "lint": "eslint \"src/**/*.*\"",
     "lint:fix": "eslint \"src/**/*.*\" --fix",
     "ng": "ng",
@@ -48,6 +48,7 @@
     "@angular-devkit/build-angular": "19.2.8",
     "@angular/cli": "19.2.8",
     "@angular/compiler-cli": "19.2.6",
+    "@angular/localize": "19.2.6",
     "@eslint/js": "9.24.0",
     "@types/express": "5.0.1",
     "@types/jasmine": "5.1.7",
