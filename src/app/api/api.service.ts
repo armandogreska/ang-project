@@ -11,7 +11,7 @@ export class ApiService {
 
   public getPosts(): Observable<object> {
     return this.http.get<object>(
-      environment.domain + environment.api + 'v2/posts',
+      environment.domain + environment.api + 'wp/v2/posts',
     )
   }
 }

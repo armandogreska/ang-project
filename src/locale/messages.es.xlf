@@ -3,8 +3,8 @@
   <file source-language="es-ES" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="2392488717875840729" datatype="html">
-        <source>User</source>
-        <target>Usuario</target>
+        <source>User name</source>
+        <target>Nombre de usuario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">13,14</context>
@@ -40,6 +40,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="732566119385538294" datatype="html">
+        <source>Incorrect password</source>
+        <target>Contraseña incorrecta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
     </body>

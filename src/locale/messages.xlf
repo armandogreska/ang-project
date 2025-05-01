@@ -4,23 +4,20 @@
     <body>
       <trans-unit id="2392488717875840729" datatype="html">
         <source>User name</source>
-        <target>User name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4222745777137170210" datatype="html">
+      <trans-unit id="7482981199433937280" datatype="html">
         <source>Enter your user name</source>
-        <target>Enter your user name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3764573579266272637" datatype="html">
-        <source>Incorrect user name</source>
-        <target>Incorrect user name</target>
+      <trans-unit id="844456977556818801" datatype="html">
+        <source> Incorrect user name </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">35</context>
@@ -28,23 +25,20 @@
       </trans-unit>
       <trans-unit id="1431416938026210429" datatype="html">
         <source>Password</source>
-        <target>Password</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">41,42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8489506529616196066" datatype="html">
+      <trans-unit id="2772023564304193657" datatype="html">
         <source>Enter your password</source>
-        <target>Enter your password</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="732566119385538294" datatype="html">
-        <source>Incorrect password</source>
-        <target>Incorrect password</target>
+        <source> Incorrect password </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/login/login.component.html</context>
           <context context-type="linenumber">63</context>

@@ -1,12 +1,12 @@
 import { NgIf } from '@angular/common'
 import { Component } from '@angular/core'
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
+import { AuthService } from '../services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -17,12 +17,12 @@ import {
 export class LoginComponent {
   public loginForm: FormGroup
 
-  constructor(
-    private fb: FormBuilder,
-    // private authService: AuthenticationService,
-  ) {
+  constructor(private _authService: AuthService) {
     this.loginForm = new FormGroup({
-      user: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
@@ -31,16 +31,18 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('>>>>>>>>>> onSubmit(): ', this.loginForm.value)
-    // const loading = await this.loadingController.create();
-    // await loading.present();
-    // this.authService.login(this.loginForm.value).subscribe(
-    //   result => {
-    //     console.log('succes');
-    //     loading.dismiss();
-    //     this.router.navigateByUrl('/tabs', { replaceUrl: true });
-    //   },
-    //   async error => {}
-    // );
+    // const loading = this.loadingController.create();
+    //  loading.present();
+    this._authService.login(this.loginForm.value).subscribe({
+      next: () => {
+        console.log(
+          '>>>>>>>>>> localStorage token: ',
+          localStorage.getItem('token'),
+        )
+      },
+      error(err: object) {
+        console.log('>>>>>>>>>> err: ', err)
+      },
+    })
   }
 }

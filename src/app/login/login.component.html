@@ -10,29 +10,29 @@
             (ngSubmit)="onSubmit()"
           >
             <div data-mdb-input-init class="form-outline mb-4">
-              <label class="form-label" for="user" i18n>User</label>
+              <label class="form-label" for="username" i18n>User name</label>
               <input
                 type="text"
-                id="user"
+                id="username"
                 class="form-control"
                 i18n-placeholder
-                placeholder="entra tu nombre de usuario"
-                formControlName="user"
+                placeholder="Enter your user name"
+                formControlName="username"
                 required
                 [class.is-invalid]="
-                  loginForm.controls['user'].invalid &&
-                  loginForm.controls['user'].touched
+                  loginForm.controls['username'].invalid &&
+                  loginForm.controls['username'].touched
                 "
               />
               <p
                 *ngIf="
-                  loginForm.controls['user'].invalid &&
-                  loginForm.controls['user'].touched
+                  loginForm.controls['username'].invalid &&
+                  loginForm.controls['username'].touched
                 "
                 class="invalid-feedback"
                 i18n
               >
-                nombre de usuario incorrecto
+                Incorrect user name
               </p>
             </div>
 
@@ -44,7 +44,7 @@
                 id="password"
                 class="form-control"
                 i18n-placeholder
-                placeholder="enter your password"
+                placeholder="Enter your password"
                 formControlName="password"
                 [class.is-invalid]="
                   loginForm.controls['password'].invalid &&
@@ -58,8 +58,9 @@
                   loginForm.controls['password'].touched
                 "
                 class="invalid-feedback"
+                i18n
               >
-                password incorrecta
+                Incorrect password
               </p>
             </div>
 
