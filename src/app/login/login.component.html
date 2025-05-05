@@ -18,16 +18,12 @@
         loginForm.controls['username'].touched
       "
     />
-    <p
-      *ngIf="
-        loginForm.controls['username'].invalid &&
-        loginForm.controls['username'].touched
-      "
-      class="invalid-feedback"
-      i18n
-    >
-      Incorrect user name
-    </p>
+    @if (
+      loginForm.controls['username'].invalid &&
+      loginForm.controls['username'].touched
+    ) {
+      <p class="invalid-feedback" i18n>Incorrect user name</p>
+    }
   </div>
   <div data-mdb-input-init class="form-outline">
     <label class="form-label" for="password" i18n>Password</label>
@@ -44,16 +40,12 @@
       "
       required
     />
-    <p
-      *ngIf="
-        loginForm.controls['password'].invalid &&
-        loginForm.controls['password'].touched
-      "
-      class="invalid-feedback"
-      i18n
-    >
-      Incorrect password
-    </p>
+    @if (
+      loginForm.controls['password'].invalid &&
+      loginForm.controls['password'].touched
+    ) {
+      <p class="invalid-feedback" i18n>Incorrect password</p>
+    }
   </div>
   <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
