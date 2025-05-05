@@ -1,1 +1,38 @@
 @use 'tailwindcss';
+
+.container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 0;
+  height: 100vh;
+}
+
+.header,
+.main,
+.footer {
+  display: grid;
+}
+
+.center {
+  justify-self: center;
+  width: var(--center-width);
+  height: 100%;
+}
+
+@media (width > 1440px) {
+  :root {
+    --center-width: 1440px;
+  }
+}
+
+@media (800px <= width <= 1440px) {
+  :root {
+    --center-width: 800px;
+  }
+}
+
+@media (width < 800px) {
+  :root {
+    --center-width: 400px;
+  }
+}
