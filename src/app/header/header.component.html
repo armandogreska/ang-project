@@ -1,14 +1,20 @@
 <div class="center">
-  <div class="logo">
-    <a href="/">
-      <img src="../../assets/images/logo.svg" alt="mikami logo" i18n-alt />
-    </a>
-  </div>
-
-  <app-search class="search"> </app-search>
-
-  <div class="user-tools">
-    <app-login class="login"></app-login>
-    <app-cart class="cart"></app-cart>
+  <a href="/" class="p-5">
+    <img src="../../assets/images/logo.svg" alt="mikami logo" />
+  </a>
+  <app-search class="search"></app-search>
+  <div class="user-tools flex mt-18 ml-20">
+    <app-login></app-login>
+    <div class="ml-5">
+      <a href="#" class="flex items-center justify-center gap-x-1">
+        <img
+          class="h-10"
+          src="../../assets/icons/user.svg"
+          alt="Sign in"
+          i18n-alt
+        />
+        <span class="text-color-corp-1 text-lg text-gray-900" i18n> Cart </span>
+      </a>
+    </div>
   </div>
 </div>

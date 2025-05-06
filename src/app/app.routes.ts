@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router'
-import { NotFoundComponent } from './not-found/not-found.component'
-import { ProductsComponent } from './products/products.component'
 
 export const routes: Routes = [
   {
     path: '',
-    component: ProductsComponent,
+    loadComponent: () =>
+      import('./products/products.component').then(m => m.ProductsComponent),
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    loadComponent: () =>
+      import('./not-found/not-found.component').then(m => m.NotFoundComponent),
     pathMatch: 'full',
   },
 ]

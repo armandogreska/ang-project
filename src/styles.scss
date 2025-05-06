@@ -1,8 +1,23 @@
 @use 'tailwindcss';
 
+// vars:
+:root {
+  --color-corp-1: #a30;
+  --color-corp-2: #e80;
+  --error-color: #d00;
+}
+
+.text-color-corp-1 {
+  color: var(--color-corp-1);
+}
+
+.text-color-corp-2 {
+  color: var(--color-corp-2);
+}
+
 .wrapper {
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 180px auto 200px;
   gap: 0;
   height: 100vh;
 }
@@ -16,23 +31,37 @@
 .center {
   justify-self: center;
   width: var(--center-width);
-  height: 100%;
 }
 
-@media (width > 1440px) {
-  :root {
-    --center-width: 1440px;
+// form-validation:
+input.is-invalid {
+  outline-color: var(--error-color);
+}
+
+.error-text {
+  color: red;
+}
+
+// media-queries:
+:root {
+  // sm	40rem (640px)
+  @media (width >= 40rem) {
+    --center-width: 40rem;
   }
-}
-
-@media (800px <= width <= 1440px) {
-  :root {
-    --center-width: 800px;
+  // md	48rem (768px)
+  @media (width >= 48rem) {
+    --center-width: 48rem;
   }
-}
-
-@media (width < 800px) {
-  :root {
-    --center-width: 400px;
+  // lg	64rem (1024px)
+  @media (width >= 64rem) {
+    --center-width: 64rem;
+  }
+  // xl	80rem (1280px)
+  @media (width >= 80rem) {
+    --center-width: 80rem;
+  }
+  // 2xl	96rem (1536px)
+  @media (width >= 96rem) {
+    --center-width: 96rem;
   }
 }

@@ -15,6 +15,7 @@ import { AuthService } from '../services/auth.service'
 })
 export class LoginComponent {
   public loginForm: FormGroup
+  public isLoginOn = false
 
   constructor(private _authService: AuthService) {
     this.loginForm = new FormGroup({

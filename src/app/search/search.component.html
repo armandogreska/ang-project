@@ -1,6 +1,7 @@
 <label
-  for="default-search"
-  class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+  for="search-input"
+  class="mb-2 text-sm font-medium text-gray-900 sr-only"
+  i18n
   >Search</label
 >
 <div class="relative">
@@ -8,7 +9,7 @@
     class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
   >
     <svg
-      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+      class="w-4 h-4 text-gray-500"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -25,27 +26,17 @@
   </div>
   <input
     type="search"
-    id="default-search"
-    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    placeholder="Search Mockups, Logos..."
+    id="search-input"
+    class="block w-full p-2 ps-10 rounded-lg bg-white text-gray-600 placeholder-gray-600"
+    placeholder="Search Products ..."
+    i18n-placeholder
     required
   />
   <button
     type="submit"
-    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    class="text-white absolute end-1 bottom-1 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-1.5 bg-blue-600 hover:bg-blue-700"
+    i18n
   >
     Search
   </button>
 </div>
-
-<!--
-<div class="search input-group">
-  <div class="form-outline" data-mdb-input-init>
-    <input id="search-focus" type="search" id="form1" class="form-control" />
-    <label class="form-label" for="form1" i18n>Search</label>
-  </div>
-  <button type="button" class="btn btn-primary" data-mdb-ripple-init>
-    <i class="fas fa-search"></i>
-  </button>
-</div>
--->
