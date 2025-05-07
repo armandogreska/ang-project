@@ -10,7 +10,7 @@ import User from '../interfaces/user.interface'
 })
 export class AuthService {
   // private user = new BehaviorSubject<object | null>(null)
-  // #token: string | null = null
+  #token: string | null = null
   readonly #httpClient = inject(HttpClient)
   readonly #domain = environment.domain
   readonly #api = environment.api
@@ -27,18 +27,18 @@ export class AuthService {
   //   localStorage.removeItem(k)
   // }
 
-  // private getIsAuthenticated(): boolean {
-  //   if (!this.token) {
-  //     return false
-  //   }
-  //   const payload = JSON.parse(atob(this.token.split('.')[1]))
-  //   const expirationDateMs: number = payload.exp * 1000
-  //   return Date.now() < expirationDateMs
-  // }
+  private getIsAuthenticated(): boolean {
+    if (!this.#token) {
+      return false
+    }
+    const payload = JSON.parse(atob(this.#token.split('.')[1]))
+    const expirationDateMs: number = payload.exp * 1000
+    return Date.now() < expirationDateMs
+  }
 
   // private logout(): void {
-  //   if (typeof this.token == 'string') {
-  //     this.removeItem(this.token)
+  //   if (typeof this.#token == 'string') {
+  //     this.removeItem(this.#token)
   //   }
   // }
 
