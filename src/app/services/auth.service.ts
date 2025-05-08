@@ -27,7 +27,11 @@ export class AuthService {
   //   localStorage.removeItem(k)
   // }
 
-  private getIsAuthenticated(): boolean {
+  public initializeAuth() {
+    console.log('>>>>>>>>>> loadConfig() !!!!!')
+  }
+
+  public getIsAuthenticated(): boolean {
     if (!this.#token) {
       return false
     }
