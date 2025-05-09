@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core'
+import { Component, DestroyRef, inject, OnInit } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Observable } from 'rxjs'
 import AuthInterface from '../../interfaces/auth.interface'
@@ -12,13 +12,14 @@ import { SearchComponent } from '../search/search.component'
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public isAuthenticated = false
   readonly #destroyRef = inject(DestroyRef)
   readonly #authStore = inject(AuthStore)
   authStore$: Observable<AuthInterface> = this.#authStore.authStore$
 
-  constructor() {
+  ngOnInit() {
+    console.log('Delayed for 1 second.')
     this.authStore$
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((res: AuthInterface) => {

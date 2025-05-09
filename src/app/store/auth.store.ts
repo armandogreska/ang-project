@@ -15,7 +15,9 @@ export class AuthStore {
   readonly authStore$: Observable<AuthInterface> =
     this.#authStore.asObservable()
 
-  public set(e: object) {
-    this.#authStore.next({ ...this.#authStore.getValue(), ...e })
+  public set(e: AuthInterface) {
+    if (!!e.token.length && !!e.userName.length) {
+      this.#authStore.next({ ...this.#authStore.getValue(), ...e })
+    }
   }
 }

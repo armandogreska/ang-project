@@ -1,77 +1,73 @@
 import { HttpClient } from '@angular/common/http'
-import { DOCUMENT, inject, Injectable } from '@angular/core'
+import { DestroyRef, DOCUMENT, inject, Injectable } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { catchError, tap, throwError } from 'rxjs'
 import { environment } from '../../environments/environment'
+import AuthInterface from '../interfaces/auth.interface'
 import TokenResponseInterface from '../interfaces/token.interface'
 import User from '../interfaces/user.interface'
 import { AuthStore } from '../store/auth.store'
+import { LoadingStore } from '../store/loading.store'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   // private user = new BehaviorSubject<object | null>(null)
-  #token: string | null = null
+  readonly #destroyRef = inject(DestroyRef)
   readonly #document: Document = inject(DOCUMENT)
   readonly #localStorage: Storage | undefined
   readonly #authStore = inject(AuthStore)
   readonly #httpClient = inject(HttpClient)
   readonly #domain: string = environment.domain
   readonly #api: string = environment.api
+  readonly #loadingStore = inject(LoadingStore)
 
   constructor() {
     this.#localStorage = this.#document.defaultView?.localStorage
+    this.#authStore.authStore$
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(e => {
+        if (e.token) {
+          localStorage.setItem('token', e.token)
+          localStorage.setItem('userName', e.userName)
+        }
+      })
   }
 
-  public initializeAuth() {
+  public initializeAuthStore() {
     const currentToken: string | undefined | null =
       this.#localStorage?.getItem('token')
-    const user_name: string | undefined | null =
-      this.#localStorage?.getItem('user_name')
-    if (!currentToken || !user_name) {
-      this.#token = null
-    } else {
+    const userName: string | undefined | null =
+      this.#localStorage?.getItem('userName')
+    if (!!currentToken && !!userName) {
       const payload = JSON.parse(atob(currentToken.split('.')[1]))
       const expirationDateMs: number = payload.exp * 1000
-      const newData = {
-        isAuthenticated: Date.now() < expirationDateMs,
-        user_name: user_name,
+      const isTokenValid: boolean = Date.now() < expirationDateMs
+      const newData: AuthInterface = {
+        token: isTokenValid ? currentToken : '',
+        isAuthenticated: isTokenValid,
+        userName: userName,
       }
       this.#authStore.set(newData)
     }
   }
 
-  public getIsAuthenticated(): boolean {
-    if (!this.#token) {
-      return false
-    }
-    const payload = JSON.parse(atob(this.#token.split('.')[1]))
-    const expirationDateMs: number = payload.exp * 1000
-    return Date.now() < expirationDateMs
-  }
-
-  // private logout(): void {
-  //   if (typeof this.#token == 'string') {
-  //     this.removeItem(this.#token)
-  //   }
-  // }
-
   public login(user: User) {
+    this.#loadingStore.set(true)
     return this.#httpClient
       .post(this.#domain + this.#api + 'jwt-auth/v1/token', user)
       .pipe(
         tap((res: TokenResponseInterface) => {
-          if (
-            res.token &&
-            res.token.length > 0 &&
-            res.user_nicename &&
-            res.user_nicename.length > 0
-          ) {
-            localStorage.setItem('token', res.token)
-            localStorage.setItem('user_name', res.user_nicename)
+          const newData: AuthInterface = {
+            token: res.token || '',
+            userName: res.user_nicename || '',
+            isAuthenticated: true,
           }
+          this.#authStore.set(newData)
         }),
         catchError(error => {
+          // TODO: case user/password incorrect
           console.log('>>>>>>>>>> error: ', error)
           return throwError(() => error)
         }),

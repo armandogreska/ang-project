@@ -20,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
-    provideAppInitializer(() => inject(AuthService).initializeAuth()),
+    provideAppInitializer(() => inject(AuthService).initializeAuthStore()),
   ],
 }
