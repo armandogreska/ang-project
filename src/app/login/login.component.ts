@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms'
 import { AuthService } from '../services/auth.service'
+import { LoadingStore } from '../store/loading.store'
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,11 @@ import { AuthService } from '../services/auth.service'
 })
 export class LoginComponent {
   public loginForm: FormGroup
-  public isLoginOn = false
+  public isLoginLayerOn = false
+  readonly #loadingStore = inject(LoadingStore)
+  readonly #authService = inject(AuthService)
 
-  constructor(private _authService: AuthService) {
+  constructor() {
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -31,14 +34,10 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    // const loading = this.loadingController.create();
-    //  loading.present();
-    this._authService.login(this.loginForm.value).subscribe({
+    this.#loadingStore.set(true)
+    this.#authService.login(this.loginForm.value).subscribe({
       next: () => {
-        console.log(
-          '>>>>>>>>>> localStorage token: ',
-          localStorage.getItem('token'),
-        )
+        this.#loadingStore.set(false)
       },
       error(err: object) {
         console.log('>>>>>>>>>> err: ', err)

@@ -4,7 +4,11 @@
   </a>
   <app-search class="search"></app-search>
   <div class="user-tools flex mt-20 ml-20">
-    <app-login></app-login>
+    @if (!isAuthenticated) {
+      <app-login></app-login>
+    } @else {
+      <p>que pasa colega!</p>
+    }
     <div class="ml-6">
       <a href="#" class="flex items-center justify-center gap-x-1">
         <img

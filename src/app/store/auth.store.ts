@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
+import AuthInterface from '../interfaces/auth.interface'
 
 @Injectable({
   providedIn: 'root',
 })
-export class StoreStore {
-  // Init with null to filter out the first value in a guard!
-  readonly #isAuthenticated = new BehaviorSubject<boolean>(false)
-  readonly isAuthenticated$ = this.#isAuthenticated.asObservable()
+export class AuthStore {
+  // TODO: Init with null to filter out the first value in a guard!
+  readonly #authStore = new BehaviorSubject<AuthInterface>({
+    token: '',
+    userName: '',
+    isAuthenticated: false,
+  })
+  readonly authStore$: Observable<AuthInterface> =
+    this.#authStore.asObservable()
+
+  public set(e: object) {
+    this.#authStore.next({ ...this.#authStore.getValue(), ...e })
+  }
 }

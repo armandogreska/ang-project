@@ -1,4 +1,4 @@
-export default interface Token {
+export default interface TokenResponseInterface {
   token?: string
   user_display_name?: string
   user_email?: string

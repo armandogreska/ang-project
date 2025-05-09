@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http'
-import { inject, Injectable } from '@angular/core'
+import { DOCUMENT, inject, Injectable } from '@angular/core'
 import { catchError, tap, throwError } from 'rxjs'
 import { environment } from '../../environments/environment'
-import Token from '../interfaces/token.interface'
+import TokenResponseInterface from '../interfaces/token.interface'
 import User from '../interfaces/user.interface'
+import { AuthStore } from '../store/auth.store'
 
 @Injectable({
   providedIn: 'root',
@@ -11,24 +12,33 @@ import User from '../interfaces/user.interface'
 export class AuthService {
   // private user = new BehaviorSubject<object | null>(null)
   #token: string | null = null
+  readonly #document: Document = inject(DOCUMENT)
+  readonly #localStorage: Storage | undefined
+  readonly #authStore = inject(AuthStore)
   readonly #httpClient = inject(HttpClient)
-  readonly #domain = environment.domain
-  readonly #api = environment.api
+  readonly #domain: string = environment.domain
+  readonly #api: string = environment.api
 
-  // private setItem(k: string, v: string): void {
-  //   localStorage.setItem(k, v)
-  // }
-
-  // private getItem(k: string): string | null {
-  //   return localStorage.getItem(k)
-  // }
-
-  // private removeItem(k: string): void {
-  //   localStorage.removeItem(k)
-  // }
+  constructor() {
+    this.#localStorage = this.#document.defaultView?.localStorage
+  }
 
   public initializeAuth() {
-    console.log('>>>>>>>>>> loadConfig() !!!!!')
+    const currentToken: string | undefined | null =
+      this.#localStorage?.getItem('token')
+    const user_name: string | undefined | null =
+      this.#localStorage?.getItem('user_name')
+    if (!currentToken || !user_name) {
+      this.#token = null
+    } else {
+      const payload = JSON.parse(atob(currentToken.split('.')[1]))
+      const expirationDateMs: number = payload.exp * 1000
+      const newData = {
+        isAuthenticated: Date.now() < expirationDateMs,
+        user_name: user_name,
+      }
+      this.#authStore.set(newData)
+    }
   }
 
   public getIsAuthenticated(): boolean {
@@ -47,46 +57,24 @@ export class AuthService {
   // }
 
   public login(user: User) {
-    // http://localhost/index.php/wp-json/jwt-auth/v1/token
-
     return this.#httpClient
       .post(this.#domain + this.#api + 'jwt-auth/v1/token', user)
       .pipe(
-        tap((res: Token) => {
-          if (res.token && res.token.length > 0) {
+        tap((res: TokenResponseInterface) => {
+          if (
+            res.token &&
+            res.token.length > 0 &&
+            res.user_nicename &&
+            res.user_nicename.length > 0
+          ) {
             localStorage.setItem('token', res.token)
+            localStorage.setItem('user_name', res.user_nicename)
           }
         }),
         catchError(error => {
           console.log('>>>>>>>>>> error: ', error)
           return throwError(() => error)
         }),
-
-        // return this.http
-        // .post(`https://hololifoods.dk/wp-json/jwt-auth/v1/token`, {
-        //   username: credentials.email,
-        //   password: credentials.password,
-        // })
-        // .pipe(
-        //   catchError((error) => {
-        //     console.log("3");
-        //     return throwError(error);
-        //   }),
-        // map((data: any) => data),
-        // switchMap((data) => {
-        //   console.log(data);
-        //   localStorage.setItem("email", data.user_email);
-        //   from(
-        //     Storage.set({
-        //       key: "email",
-        //       value: JSON.stringify(data.user_email),
-        //     })
-        //   );
-        //   return from(Storage.set({ key: TOKEN_KEY, value: data.token }));
-        // }),
-        // tap((_) => {
-        //   this.isAuthenticated.next(true);
-        // })
       )
   }
 }
