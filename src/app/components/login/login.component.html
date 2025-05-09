@@ -9,7 +9,7 @@
   </a>
 
   @if (isLoginLayerOn) {
-    <div class="login-layer">
+    <div class="login-layer" (clickOutside)="isLoginLayerOn = false">
       <form
         [formGroup]="loginForm"
         (ngSubmit)="onSubmit()"

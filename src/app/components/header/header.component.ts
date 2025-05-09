@@ -3,12 +3,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Observable } from 'rxjs'
 import AuthInterface from '../../interfaces/auth.interface'
 import { AuthStore } from '../../store/auth.store'
+import { LoggedComponent } from '../logged/logged.component'
 import { LoginComponent } from '../login/login.component'
 import { SearchComponent } from '../search/search.component'
 
 @Component({
   selector: 'app-header',
-  imports: [LoginComponent, SearchComponent],
+  imports: [LoginComponent, LoggedComponent, SearchComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
