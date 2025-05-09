@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, inject } from '@angular/core'
 import { ApiService } from '../../api/api.service'
 
 @Component({
@@ -9,8 +9,9 @@ import { ApiService } from '../../api/api.service'
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
+  private apiService = inject(ApiService)
+
   public posts: object = {}
-  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.apiService.getPosts().subscribe(posts => {

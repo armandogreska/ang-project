@@ -1,12 +1,18 @@
-import { Directive, ElementRef, HostListener, output } from '@angular/core'
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  output,
+  inject,
+} from '@angular/core'
 
 @Directive({
   selector: '[clickOutside]',
 })
 export class ClickOutsideDirective {
-  readonly clickOutside = output<MouseEvent>()
+  private elementRef = inject(ElementRef)
 
-  constructor(private elementRef: ElementRef) {}
+  readonly clickOutside = output<MouseEvent>()
 
   @HostListener('document:click', ['$event'])
   public onDocumentClick(event: MouseEvent): void {
