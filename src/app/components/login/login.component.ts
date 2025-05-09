@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
-import { AuthService } from '../services/auth.service'
-import { LoadingStore } from '../store/loading.store'
+import { AuthService } from '../../services/auth.service'
+import { LoadingStore } from '../../store/loading.store'
 
 @Component({
   selector: 'app-login',

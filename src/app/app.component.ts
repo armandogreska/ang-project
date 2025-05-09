@@ -2,8 +2,8 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { RouterModule, RouterOutlet } from '@angular/router'
 import { ApiService } from './api/api.service'
-import { FooterComponent } from './footer/footer.component'
-import { HeaderComponent } from './header/header.component'
+import { FooterComponent } from './components/footer/footer.component'
+import { HeaderComponent } from './components/header/header.component'
 import { LoadingStore } from './store/loading.store'
 
 @Component({

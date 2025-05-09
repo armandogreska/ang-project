@@ -1,10 +1,10 @@
 import { Component, DestroyRef, inject } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { Observable } from 'rxjs'
-import AuthInterface from '../interfaces/auth.interface'
+import AuthInterface from '../../interfaces/auth.interface'
+import { AuthStore } from '../../store/auth.store'
 import { LoginComponent } from '../login/login.component'
 import { SearchComponent } from '../search/search.component'
-import { AuthStore } from '../store/auth.store'
 
 @Component({
   selector: 'app-header',
