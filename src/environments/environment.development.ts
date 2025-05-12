@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/',
+  domain: 'http://localhost/',
+  api: 'index.php/wp-json/',
 }

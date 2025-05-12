@@ -1,0 +1,112 @@
+<div class="relative">
+  <a
+    href="#"
+    class="flex items-center justify-center gap-x-1"
+    (click)="isLoginLayerOn = !isLoginLayerOn"
+  >
+    <img class="h-6" src="../../assets/icons/user.svg" alt="Sign in" i18n-alt />
+    <span class="text-color-corp-1 text-lg text-gray-900" i18n> Log in </span>
+  </a>
+
+  @if (isLoginLayerOn) {
+    <div class="login-layer" (clickOutside)="isLoginLayerOn = false">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="needs-validation space-y-6"
+      >
+        <div>
+          <label
+            for="username"
+            class="block text-sm/6 font-medium text-gray-900"
+            i18n
+            >User name</label
+          >
+          <div class="mt-2">
+            <input
+              type="text"
+              id="username"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              i18n-placeholder
+              placeholder="Enter your user name"
+              formControlName="username"
+              required
+              [class.is-invalid]="
+                loginForm.controls['username'].invalid &&
+                loginForm.controls['username'].touched
+              "
+            />
+            @if (
+              loginForm.controls['username'].invalid &&
+              loginForm.controls['username'].touched
+            ) {
+              <p class="error-text" i18n>Incorrect user name</p>
+            }
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label
+              for="password"
+              class="block text-sm/6 font-medium text-gray-900"
+              i18n
+              >Password</label
+            >
+            <!--
+        <div class="text-sm">
+          <a
+            href="#"
+            class="font-semibold text-indigo-600 hover:text-indigo-500"
+            >Forgot password?</a
+          >
+        </div>
+        -->
+          </div>
+          <div class="mt-2">
+            <input
+              type="password"
+              id="password"
+              class="outline block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              i18n-placeholder
+              placeholder="Enter your password"
+              formControlName="password"
+              [class.is-invalid]="
+                loginForm.controls['password'].invalid &&
+                loginForm.controls['password'].touched
+              "
+              required
+            />
+            @if (
+              loginForm.controls['password'].invalid &&
+              loginForm.controls['password'].touched
+            ) {
+              <p class="error-text" i18n>Incorrect password</p>
+            }
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+
+      <!--
+  <p class="mt-10 text-center text-sm/6 text-gray-500">
+    Not a member?
+    <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500"
+      >Start a 14 day free trial</a
+    >
+  </p>
+  -->
+
+      <div class="form-outline"></div>
+      <div data-mdb-input-init class="form-outline"></div>
+    </div>
+  }
+</div>

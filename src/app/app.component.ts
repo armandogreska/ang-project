@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
-import { AppService } from './app.service'
+import { Component, DestroyRef, inject, OnInit } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { RouterModule, RouterOutlet } from '@angular/router'
+import { ApiService } from './api/api.service'
+import { FooterComponent } from './components/footer/footer.component'
+import { HeaderComponent } from './components/header/header.component'
+import { LoadingStore } from './store/loading.store'
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterModule, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [AppService],
+  providers: [ApiService],
 })
 export class AppComponent implements OnInit {
-  public title = 'ang-project'
+  readonly #loadingStore = inject(LoadingStore)
+  readonly #destroyRef = inject(DestroyRef)
+  public isLoadingOn = false
 
-  constructor(private appService: AppService) {}
-
-  ngOnInit() {
-    this.appService.getPosts().subscribe(posts => {
-      console.log('>>>>>>>>>> cmp: ', posts)
-    })
+  ngOnInit(): void {
+    this.#loadingStore.loadingStore$
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe((res: boolean) => {
+        this.isLoadingOn = res
+      })
   }
 }

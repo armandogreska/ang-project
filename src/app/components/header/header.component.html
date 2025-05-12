@@ -1,0 +1,24 @@
+<div class="center">
+  <a href="/" class="p-5">
+    <img src="../../assets/images/logo.svg" alt="mikami logo" />
+  </a>
+  <app-search class="search"></app-search>
+  <div class="user-tools flex mt-20 ml-20">
+    @if (isAuthenticated) {
+      <app-logged></app-logged>
+    } @else {
+      <app-login></app-login>
+    }
+    <div class="ml-6">
+      <a href="#" class="flex items-center justify-center gap-x-1">
+        <img
+          class="h-6"
+          src="../../assets/icons/cart.svg"
+          alt="Sign in"
+          i18n-alt
+        />
+        <span class="text-color-corp-1 text-lg text-gray-900" i18n> Cart </span>
+      </a>
+    </div>
+  </div>
+</div>
