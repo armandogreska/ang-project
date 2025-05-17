@@ -11,11 +11,11 @@ import { ApiService } from '../../api/api.service'
 export class ProductsComponent implements OnInit {
   private apiService = inject(ApiService)
 
-  public posts: object = {}
+  public products: object = {}
 
   ngOnInit() {
-    this.apiService.getPosts().subscribe(posts => {
-      this.posts = posts
+    this.apiService.getProducts().subscribe(products => {
+      this.products = products
       // console.log('>>>>>>>>>> posts: ', this.posts)
     })
   }

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  domain: 'http://my-prod-url/',
-  api: 'index.php/wp-json/',
+  domain: 'https://wordpress.local',
+  api: '/index.php?rest_route=',
 }

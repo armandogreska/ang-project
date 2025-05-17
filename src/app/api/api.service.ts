@@ -9,9 +9,9 @@ import { environment } from '../../environments/environment'
 export class ApiService {
   private readonly http: HttpClient = inject(HttpClient)
 
-  public getPosts(): Observable<object> {
+  public getProducts(): Observable<object> {
     return this.http.get<object>(
-      environment.domain + environment.api + 'wp/v2/posts',
+      environment.domain + environment.api + '/wc/store/v1/products',
     )
   }
 }
