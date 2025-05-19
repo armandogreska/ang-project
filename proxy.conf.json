@@ -1,0 +1,15 @@
+{
+  "/products": {
+    "target": "https://wordpress.local",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/products": "/wp-json/wc/store/v1/products"
+    },
+    "headers": {
+      "Host": "wordpress.local",
+      "Accept": "application/json"
+    }
+  }
+}
