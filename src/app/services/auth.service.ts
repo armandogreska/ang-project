@@ -20,7 +20,7 @@ export class AuthService {
   readonly #authStore = inject(AuthStore)
   readonly #httpClient = inject(HttpClient)
   readonly #domain: string = environment.domain
-  readonly #api: string = environment.api
+  readonly #api_auth: string = environment.api_auth
   readonly #loadingStore = inject(LoadingStore)
 
   constructor() {
@@ -56,7 +56,7 @@ export class AuthService {
   public login(user: User) {
     this.#loadingStore.set(true)
     return this.#httpClient
-      .post(this.#domain + this.#api + 'jwt-auth/v1/token', user)
+      .post(this.#domain + this.#api_auth + '/token', user)
       .pipe(
         tap((res: TokenResponseInterface) => {
           const newData: AuthInterface = {
