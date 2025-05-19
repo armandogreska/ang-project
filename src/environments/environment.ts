@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  domain: 'https://wordpress.local',
-  api: '/index.php?rest_route=',
+  domain: 'https://dominio.com',
+  api: '/wp-json/wc/store/v1',
 }

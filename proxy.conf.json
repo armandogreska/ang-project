@@ -1,11 +1,11 @@
 {
-  "/products": {
+  "/wordpress.local": {
     "target": "https://wordpress.local",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
-      "^/products": "/wp-json/wc/store/v1/products"
+      "^/wordpress.local": "https://wordpress.local"
     },
     "headers": {
       "Host": "wordpress.local",
