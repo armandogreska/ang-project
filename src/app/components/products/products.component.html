@@ -1,6 +1,6 @@
 <div class="products-grid">
   @for (item of products; track item.id) {
-    <div class="item">
+    <div class="item" [routerLink]="['/products', item.id]">
       <img
         class="mb-2"
         src="{{ item.images[0].src }}"

@@ -1,11 +1,11 @@
-import { JsonPipe } from '@angular/common'
 import { Component, OnInit, inject } from '@angular/core'
+import { RouterLink } from '@angular/router'
 import { ApiService } from '../../api/api.service'
 import Product from '../../interfaces/product.interface'
 
 @Component({
   selector: 'app-products',
-  imports: [JsonPipe],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
