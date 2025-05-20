@@ -1,9 +1,7 @@
 <div class="products-grid">
-  <p>{{ products | json }}</p>
-
-  <!-- @for (item of items; track item.id) {
+  @for (item of products; track item.id) {
     <li>{{ item.name }}</li>
   } @empty {
     <p>No products found</p>
-  } -->
+  }
 </div>
