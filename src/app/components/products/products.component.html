@@ -1,6 +1,20 @@
 <div class="products-grid">
   @for (item of products; track item.id) {
-    <li>{{ item.name }}</li>
+    <div class="item">
+      <img
+        class="mb-2"
+        src="{{ item.images[0].src }}"
+        alt="{{ item.slug }}"
+        i18n-alt
+      />
+      <p class="name mb-2" i18n>{{ item.name }}</p>
+      <p>
+        <strong class="price" i18n>
+          {{ item.prices.price }}
+        </strong>
+        {{ item.prices.currency_symbol }}
+      </p>
+    </div>
   } @empty {
     <p>No products found</p>
   }

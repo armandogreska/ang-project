@@ -1,0 +1,28 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  padding: 16px;
+}
+
+.item {
+  width: 90%;
+  background-color: #fff;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition-duration: 0.3s;
+  transition-property: box-shadow, transform;
+  box-shadow: 0 0 1px transparent;
+  border: 1px solid rgba($color: #000000, $alpha: 0.05);
+}
+
+.item:hover,
+.item:focus,
+.item:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 24, 0.5);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.name:hover {
+  text-decoration: underline;
+}
