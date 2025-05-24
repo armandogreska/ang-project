@@ -17,11 +17,10 @@ export class HeaderComponent implements OnInit {
   public isAuthenticated = false
   readonly #destroyRef = inject(DestroyRef)
   readonly #authStore = inject(AuthStore)
-  authStore$: Observable<AuthInterface> = this.#authStore.authStore$
+  readonly #authStore$: Observable<AuthInterface> = this.#authStore.authStore$
 
   ngOnInit() {
-    console.log('Delayed for 1 second.')
-    this.authStore$
+    this.#authStore$
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((res: AuthInterface) => {
         this.isAuthenticated = res.isAuthenticated

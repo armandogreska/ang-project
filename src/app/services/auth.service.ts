@@ -16,7 +16,8 @@ export class AuthService {
   // private user = new BehaviorSubject<object | null>(null)
   readonly #destroyRef = inject(DestroyRef)
   readonly #document: Document = inject(DOCUMENT)
-  readonly #localStorage: Storage | undefined
+  readonly #localStorage: Storage | undefined =
+    this.#document.defaultView?.localStorage
   readonly #authStore = inject(AuthStore)
   readonly #httpClient = inject(HttpClient)
   readonly #domain: string = environment.domain
@@ -24,7 +25,6 @@ export class AuthService {
   readonly #loadingStore = inject(LoadingStore)
 
   constructor() {
-    this.#localStorage = this.#document.defaultView?.localStorage
     this.#authStore.authStore$
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(e => {

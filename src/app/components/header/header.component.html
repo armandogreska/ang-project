@@ -3,7 +3,7 @@
     <img src="../../assets/images/logo.svg" alt="mikami logo" />
   </a>
   <app-search class="search"></app-search>
-  <div class="user-tools flex mt-20 ml-20">
+  <div class="user-tools flex mt-20 ml-20 z-400">
     @if (isAuthenticated) {
       <app-logged></app-logged>
     } @else {
@@ -17,7 +17,12 @@
           alt="Sign in"
           i18n-alt
         />
-        <span class="text-color-corp-1 text-lg text-gray-900" i18n> Cart </span>
+        <span
+          class="text-color-corp-1 text-lg text-gray-900 hover:underline"
+          i18n
+        >
+          Cart
+        </span>
       </a>
     </div>
   </div>

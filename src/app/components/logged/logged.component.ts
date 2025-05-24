@@ -1,5 +1,6 @@
-import { Component, DOCUMENT, inject } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { ClickOutsideDirective } from '../../directives/click-outside.directive'
+import { AuthStore } from '../../store/auth.store'
 
 @Component({
   selector: 'app-logged',
@@ -9,5 +10,9 @@ import { ClickOutsideDirective } from '../../directives/click-outside.directive'
 })
 export class LoggedComponent {
   public isLoggedLayerOn = false
-  private doc = inject(DOCUMENT)
+  readonly #authStore = inject(AuthStore)
+
+  public logout() {
+    this.#authStore.reset()
+  }
 }

@@ -10,12 +10,25 @@
       alt="Your account"
       i18n-alt
     />
-    <strong class="text-m text-gray-900"> elar </strong>
+    <strong class="text-m text-gray-900 hover:underline"> elar </strong>
   </a>
 
   @if (isLoggedLayerOn) {
     <div class="logged-layer" (clickOutside)="isLoggedLayerOn = false">
-      <a href="#" i18n> Your account </a>
+      <a href="#" class="uppercase block mb-10 hover:underline" i18n>
+        Your account
+      </a>
+      <a href="#" (click)="logout()" class="logout">
+        <img
+          class="h-6"
+          src="../../assets/icons/logout.svg"
+          alt="Your account"
+          i18n-alt
+        />
+        <strong class="text-m text-gray-900 hover:underline" i18n>
+          Logout
+        </strong>
+      </a>
     </div>
   }
 </div>
