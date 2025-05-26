@@ -23,7 +23,7 @@
   },
   "lint-staged": {
     "*.*.{ts,tsx,html,css,scss,json}": "prettier --write",
-    "**/*.{ts,tsx,html,css,scss,json}": [
+    "src/**/*.{ts,tsx,html,css,scss,json}": [
       "prettier --write",
       "eslint"
     ]
