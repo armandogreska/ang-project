@@ -5,21 +5,21 @@ export const routes: Routes = [
     path: 'products/:id',
     loadComponent: () =>
       import('./components/product-detail/product-detail.component').then(
-        m => m.ProductDetailComponent,
+        c => c.ProductDetailComponent,
       ),
   },
   {
     path: '',
     loadComponent: () =>
       import('./components/products/products.component').then(
-        m => m.ProductsComponent,
+        c => c.ProductsComponent,
       ),
   },
   {
     path: '**',
     loadComponent: () =>
       import('./components/not-found/not-found.component').then(
-        m => m.NotFoundComponent,
+        c => c.NotFoundComponent,
       ),
     pathMatch: 'full',
   },
